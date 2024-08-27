@@ -15,8 +15,8 @@ services:
       - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./postgresql.conf:/root/postgresql/postgresql.conf
-    command: -c 'config_file=/root/postgresql/postgresql.conf'
+      - ./postgresql.conf:/usr/local/etc/postgresql/postgresql.conf
+    command: -c 'config_file=/usr/local/etc/postgresql/postgresql.conf'
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
       interval: 10s
