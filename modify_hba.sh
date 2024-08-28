@@ -13,3 +13,6 @@ sed -i "s/^host    all             all             ::1\/128                 .*/h
 sed -i "s/^host    all             all             0.0.0.0\/0               .*/host    all             all             0.0.0.0\/0               md5/" "$PG_HBA_FILE"
 
 sed -i "/trust/d" "$PG_HBA_FILE"
+
+echo "pg_hba.conf has been modified."
+exec postgres -c "config_file=/etc/postgresql/postgresql.conf"
