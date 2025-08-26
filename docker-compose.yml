@@ -18,23 +18,5 @@ services:
       timeout: 5s
       retries: 5
 
-  pgbouncer:
-    image: edoburu/pgbouncer:1.17.0
-    container_name: pgbouncer
-    depends_on:
-      - postgres
-    env_file:
-      - stack.env
-    environment:
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=${POSTGRES_USER}
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - AUTH_TYPE=md5
-      - POOL_MODE=transaction
-    ports:
-      - 28477:6432
-    restart: always
-
 volumes:
   postgres_data:
