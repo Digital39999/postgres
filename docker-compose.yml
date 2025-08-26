@@ -6,10 +6,6 @@ services:
     container_name: postgres
     network_mode: bridge
     restart: always
-    # environment:
-    #   POSTGRES_USER: your_user
-    #   POSTGRES_PASSWORD: your_password
-    #   POSTGRES_DB: your_db
     env_file:
       - stack.env
     ports:
@@ -21,6 +17,18 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  pgbouncer:
+    image: edoburu/pgbouncer:1.17.0
+    container_name: pgbouncer
+    depends_on:
+      - postgres
+    ports:
+      - 28477:6432
+    volumes:
+      - ./config/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+      - ./config/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    restart: always
 
 volumes:
   postgres_data:
