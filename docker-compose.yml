@@ -23,10 +23,10 @@ services:
     container_name: pgbouncer
     depends_on:
       - postgres
+    env_file:
+      - stack.env
     ports:
       - 28477:6432
-    volumes:
-      - ./config/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
     restart: always
 
 volumes:
