@@ -27,7 +27,6 @@ services:
       - 28477:6432
     volumes:
       - ./config/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
-      - ./config/userlist.txt:/etc/pgbouncer/userlist.txt:ro
     restart: always
 
 volumes:
