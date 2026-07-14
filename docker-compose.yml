@@ -5,7 +5,7 @@ services:
     network_mode: bridge
     restart: always
     env_file:
-      - .env
+      - stack.env
     shm_size: 256mb
     ports:
       - 62909:5432
