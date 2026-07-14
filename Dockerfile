@@ -2,6 +2,10 @@ FROM postgres:16-alpine
 
 RUN apk add --no-cache musl-locales musl-locales-lang
 
+ENV LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    MUSL_LOCPATH=/usr/share/i18n/locales/musl
+
 COPY config/pg_hba.conf /etc/postgresql/pg_hba.conf
 COPY config/postgresql.conf /etc/postgresql/postgresql.conf
 

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     build: .
@@ -7,13 +5,14 @@ services:
     network_mode: bridge
     restart: always
     env_file:
-      - stack.env
+      - .env
+    shm_size: 256mb
     ports:
       - 62909:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
       interval: 10s
       timeout: 5s
       retries: 5
